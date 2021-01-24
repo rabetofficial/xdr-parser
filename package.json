@@ -1,0 +1,20 @@
+{
+  "name": "xdr-parser",
+  "version": "0.0.1",
+  "description": "Parse stellar XDR to JSON",
+  "main": "index.js",
+  "scripts": {
+    "build": "babel src -d dist"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "json-xdr": "^0.1.1",
+    "stellar-sdk": "^7.0.0"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.12.10",
+    "@babel/core": "^7.12.10",
+    "@babel/preset-env": "^7.12.11"
+  }
+}
