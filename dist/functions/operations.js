@@ -165,7 +165,7 @@ var _default = function _default(operations) {
         }
 
         if (body.setOptionsOp.homeDomain) {
-          _params2.homeDomain = removeNull(homeDomain.toString());
+          _params2.homeDomain = removeNull(body.setOptionsOp.homeDomain.toString());
         }
 
         if (body.setOptionsOp.masterWeight) {

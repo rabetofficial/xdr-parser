@@ -129,7 +129,7 @@ export default (operations) => {
       }
 
       if (body.setOptionsOp.homeDomain) {
-        params.homeDomain = removeNull(homeDomain.toString());
+        params.homeDomain = removeNull(body.setOptionsOp.homeDomain.toString());
       }
 
       if (body.setOptionsOp.masterWeight) {
