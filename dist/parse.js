@@ -20,7 +20,15 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "d
 var _default = function _default(xdr) {
   var object = (0, _jsonXdr.toJSON)(_stellarSdk["default"].xdr.TransactionEnvelope.fromXDR(xdr, 'base64'));
   var parsed = {};
-  var tx = object.v1.tx;
+  var tx;
+
+  if (object.v0) {
+    tx = object.v0.tx;
+  } else if (object.v1) {
+    tx = object.v1.tx;
+  } else {
+    return {};
+  }
 
   if (tx.fee) {
     parsed.fee = tx.fee;
@@ -44,12 +52,14 @@ var _default = function _default(xdr) {
 
   if (tx.operations) {
     parsed.operations = (0, _operations["default"])(tx.operations);
-  }
+  } //
+  // console.log(JSON.stringify(object, null, 2));
+  // console.log();
+  // console.log();
+  // console.log(JSON.stringify(parsed, null, 2));
 
-  console.log(JSON.stringify(object, null, 2));
-  console.log();
-  console.log();
-  console.log(JSON.stringify(parsed, null, 2));
+
+  return parsed;
 };
 
 exports["default"] = _default;

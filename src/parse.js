@@ -8,7 +8,15 @@ import operationsParser from './functions/operations';
 export default (xdr) => {
   const object = toJSON(StellarSdk.xdr.TransactionEnvelope.fromXDR(xdr, 'base64'));
   const parsed = {};
-  const tx = object.v1.tx;
+  let tx;
+
+  if (object.v0) {
+    tx = object.v0.tx;
+  } else if (object.v1) {
+    tx = object.v1.tx;
+  } else {
+    return {};
+  }
 
   if (tx.fee) {
     parsed.fee = tx.fee;
@@ -33,9 +41,11 @@ export default (xdr) => {
   if (tx.operations) {
     parsed.operations = operationsParser(tx.operations)
   }
+  //
+  // console.log(JSON.stringify(object, null, 2));
+  // console.log();
+  // console.log();
+  // console.log(JSON.stringify(parsed, null, 2));
 
-  console.log(JSON.stringify(object, null, 2));
-  console.log();
-  console.log();
-  console.log(JSON.stringify(parsed, null, 2));
+  return parsed;
 };
