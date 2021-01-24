@@ -1,3 +1,4 @@
+import removeNull from './removeNull';
 import assetParser from './asset';
 import amountParser from './amount';
 import ed25519parser from './ed25519';
@@ -104,7 +105,7 @@ export default (operations) => {
       });
     }
 
-    else if (body._type === operationNames.setOption) {
+    else if (body._type === operationNames.setOption || body._type === operationNames.setOptions) {
       const params = {
         type: body._type,
       };
@@ -147,6 +148,8 @@ export default (operations) => {
       if (body.setOptionsOp.inflationDest) {
         params.inflationDest = ed25519parser(body.setOptionsOp.inflationDest);
       }
+
+      newOperations.push(params);
     }
 
     else if (body._type === operationNames.changeTrust) {

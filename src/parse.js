@@ -41,11 +41,6 @@ export default (xdr) => {
   if (tx.operations) {
     parsed.operations = operationsParser(tx.operations)
   }
-  //
-  // console.log(JSON.stringify(object, null, 2));
-  // console.log();
-  // console.log();
-  // console.log(JSON.stringify(parsed, null, 2));
 
   return parsed;
 };

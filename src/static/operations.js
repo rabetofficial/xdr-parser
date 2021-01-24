@@ -1,5 +1,6 @@
 export const payment = 'payment';
-export const setOptions = 'setOption';
+export const setOption = 'setOption';
+export const setOptions = 'setOptions';
 export const allowTrust = 'allowTrust';
 export const manageData = 'manageDatum';
 export const changeTrust = 'changeTrust';

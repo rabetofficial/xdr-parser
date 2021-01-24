@@ -7,6 +7,8 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports["default"] = void 0;
 
+var _removeNull = _interopRequireDefault(require("./removeNull"));
+
 var _asset = _interopRequireDefault(require("./asset"));
 
 var _amount = _interopRequireDefault(require("./amount"));
@@ -140,7 +142,7 @@ var _default = function _default(operations) {
           amount: (0, _amount["default"])(body.createPassiveSellOfferOp.amount),
           price: body.createPassiveSellOfferOp.price
         });
-      } else if (body._type === operationNames.setOption) {
+      } else if (body._type === operationNames.setOption || body._type === operationNames.setOptions) {
         var _params2 = {
           type: body._type
         };
@@ -165,7 +167,7 @@ var _default = function _default(operations) {
         }
 
         if (body.setOptionsOp.homeDomain) {
-          _params2.homeDomain = removeNull(body.setOptionsOp.homeDomain.toString());
+          _params2.homeDomain = (0, _removeNull["default"])(body.setOptionsOp.homeDomain.toString());
         }
 
         if (body.setOptionsOp.masterWeight) {
@@ -183,6 +185,8 @@ var _default = function _default(operations) {
         if (body.setOptionsOp.inflationDest) {
           _params2.inflationDest = (0, _ed["default"])(body.setOptionsOp.inflationDest);
         }
+
+        newOperations.push(_params2);
       } else if (body._type === operationNames.changeTrust) {
         newOperations.push({
           type: body._type,
@@ -205,7 +209,7 @@ var _default = function _default(operations) {
         newOperations.push({
           type: body._type,
           name: body.manageDataOp.dataName,
-          value: removeNull(body.manageDataOp.dataValue.toString())
+          value: (0, _removeNull["default"])(body.manageDataOp.dataValue.toString())
         });
       } else if (body._type === operationNames.bumpSequence) {
         newOperations.push({
