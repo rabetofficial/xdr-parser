@@ -1,8 +1,8 @@
 {
   "name": "xdr-parser",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "Parse stellar XDR to JSON",
-  "main": "index.js",
+  "main": "dist/index.js",
   "scripts": {
     "build": "babel src -d dist"
   },

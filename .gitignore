@@ -40,7 +40,6 @@ nohup.out
 popup
 web-ext-artifacts
 background
-dist
 
 # IDEs and editors
 /.idea
