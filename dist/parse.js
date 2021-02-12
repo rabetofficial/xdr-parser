@@ -15,10 +15,13 @@ var _ed = _interopRequireDefault(require("./functions/ed25519"));
 
 var _operations = _interopRequireDefault(require("./functions/operations"));
 
+var _sourceAccount = _interopRequireDefault(require("./functions/sourceAccount"));
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
 var _default = function _default(xdr) {
   var object = (0, _jsonXdr.toJSON)(_stellarSdk["default"].xdr.TransactionEnvelope.fromXDR(xdr, 'base64'));
+  console.log(JSON.stringify(object, null, 2));
   var parsed = {};
   var tx;
 
@@ -48,12 +51,15 @@ var _default = function _default(xdr) {
 
   if (tx.sourceAccount) {
     parsed.sourceAccount = (0, _ed["default"])(tx.sourceAccount);
+  } else if (tx.sourceAccountEd25519) {
+    parsed.sourceAccount = (0, _sourceAccount["default"])(tx.sourceAccountEd25519);
   }
 
   if (tx.operations) {
     parsed.operations = (0, _operations["default"])(tx.operations);
   }
 
+  console.log(JSON.stringify(parsed, null, 2));
   return parsed;
 };
 

@@ -4,9 +4,11 @@ import StellarSdk from 'stellar-sdk';
 import memoParser from './functions/memo';
 import ed25519parser from './functions/ed25519';
 import operationsParser from './functions/operations';
+import sourceAccountParser from './functions/sourceAccount';
 
 export default (xdr) => {
   const object = toJSON(StellarSdk.xdr.TransactionEnvelope.fromXDR(xdr, 'base64'));
+
   const parsed = {};
   let tx;
 
@@ -36,6 +38,8 @@ export default (xdr) => {
 
   if (tx.sourceAccount) {
     parsed.sourceAccount = ed25519parser(tx.sourceAccount);
+  } else if (tx.sourceAccountEd25519) {
+    parsed.sourceAccount = sourceAccountParser(tx.sourceAccountEd25519);
   }
 
   if (tx.operations) {
