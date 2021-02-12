@@ -205,12 +205,17 @@ var _default = function _default(operations) {
           type: body._type,
           destination: (0, _ed["default"])(body.destination)
         });
-      } else if (body._type === operationNames.manageData) {
-        newOperations.push({
+      } else if (body._type === operationNames.manageData || body._type === operationNames.manageDatum) {
+        var _p2 = {
           type: body._type,
-          name: body.manageDataOp.dataName,
-          value: (0, _removeNull["default"])(body.manageDataOp.dataValue.toString())
-        });
+          name: body.manageDataOp.dataName
+        };
+
+        if (body.manageDataOp.dataValue) {
+          _p2.value = (0, _removeNull["default"])(body.manageDataOp.dataValue.toString());
+        }
+
+        newOperations.push(_p2);
       } else if (body._type === operationNames.bumpSequence) {
         newOperations.push({
           type: body._type,

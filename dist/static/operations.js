@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.pathPaymentStrictReceive = exports.createPassiveSellOffer = exports.pathPaymentStrictSend = exports.manageSellOffer = exports.manageBuyOffer = exports.createAccount = exports.bumpSequence = exports.accountMerge = exports.changeTrust = exports.manageData = exports.allowTrust = exports.setOptions = exports.setOption = exports.payment = void 0;
+exports.pathPaymentStrictReceive = exports.createPassiveSellOffer = exports.pathPaymentStrictSend = exports.manageSellOffer = exports.manageBuyOffer = exports.createAccount = exports.bumpSequence = exports.accountMerge = exports.changeTrust = exports.manageDatum = exports.manageData = exports.allowTrust = exports.setOptions = exports.setOption = exports.payment = void 0;
 var payment = 'payment';
 exports.payment = payment;
 var setOption = 'setOption';
@@ -12,8 +12,10 @@ var setOptions = 'setOptions';
 exports.setOptions = setOptions;
 var allowTrust = 'allowTrust';
 exports.allowTrust = allowTrust;
-var manageData = 'manageDatum';
+var manageData = 'manageData';
 exports.manageData = manageData;
+var manageDatum = 'manageDatum';
+exports.manageDatum = manageDatum;
 var changeTrust = 'changeTrust';
 exports.changeTrust = changeTrust;
 var accountMerge = 'accountMerge';

@@ -176,12 +176,17 @@ export default (operations) => {
       });
     }
 
-    else if (body._type === operationNames.manageData) {
-      newOperations.push({
+    else if (body._type === operationNames.manageData || body._type === operationNames.manageDatum) {
+      const p = {
         type: body._type,
         name: body.manageDataOp.dataName,
-        value: removeNull(body.manageDataOp.dataValue.toString()),
-      });
+      };
+
+      if (body.manageDataOp.dataValue) {
+        p.value = removeNull(body.manageDataOp.dataValue.toString())
+      }
+
+      newOperations.push(p);
     }
 
     else if (body._type === operationNames.bumpSequence) {
