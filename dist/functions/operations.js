@@ -191,7 +191,7 @@ var _default = function _default(operations) {
         newOperations.push({
           type: body._type,
           asset: (0, _asset["default"])(body.changeTrustOp.line),
-          limit: body.changeTrustOp.limit
+          limit: (0, _amount["default"])(body.changeTrustOp.limit)
         });
       } else if (body._type === operationNames.allowTrust) {
         newOperations.push({
