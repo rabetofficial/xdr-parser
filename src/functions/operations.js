@@ -17,17 +17,13 @@ export default (operations) => {
         amount: amountParser(body.paymentOp.amount),
         destination: ed25519parser(body.paymentOp.destination),
       });
-    }
-
-    else if (body._type === operationNames.createAccount) {
+    } else if (body._type === operationNames.createAccount) {
       newOperations.push({
         type: body._type,
         destination: ed25519parser(body.createAccountOp.destination),
         startingBalance: amountParser(body.createAccountOp.startingBalance),
       });
-    }
-
-    else if (body._type === operationNames.pathPaymentStrictReceive) {
+    } else if (body._type === operationNames.pathPaymentStrictReceive) {
       const params = {
         type: body._type,
         sendAsset: assetParser(body.pathPaymentStrictReceiveOp.sendAsset),
@@ -48,9 +44,7 @@ export default (operations) => {
       }
 
       newOperations.push(params);
-    }
-
-    else if (body._type === operationNames.pathPaymentStrictSend) {
+    } else if (body._type === operationNames.pathPaymentStrictSend) {
       const params = {
         type: body._type,
         sendAsset: assetParser(body.pathPaymentStrictSendOp.sendAsset),
@@ -71,9 +65,7 @@ export default (operations) => {
       }
 
       newOperations.push(params);
-    }
-
-    else if (body._type === operationNames.manageBuyOffer) {
+    } else if (body._type === operationNames.manageBuyOffer) {
       newOperations.push({
         type: body._type,
         selling: assetParser(body.manageBuyOfferOp.selling),
@@ -82,9 +74,7 @@ export default (operations) => {
         price: body.manageBuyOfferOp.price,
         offerId: body.manageBuyOfferOp.offerId,
       });
-    }
-
-    else if (body._type === operationNames.manageSellOffer) {
+    } else if (body._type === operationNames.manageSellOffer) {
       newOperations.push({
         type: body._type,
         selling: assetParser(body.manageSellOfferOp.selling),
@@ -93,9 +83,7 @@ export default (operations) => {
         price: body.manageSellOfferOp.price,
         offerId: body.manageSellOfferOp.offerId,
       });
-    }
-
-    else if (body._type === operationNames.createPassiveSellOffer) {
+    } else if (body._type === operationNames.createPassiveSellOffer) {
       newOperations.push({
         type: body._type,
         selling: assetParser(body.createPassiveSellOfferOp.selling),
@@ -103,9 +91,7 @@ export default (operations) => {
         amount: amountParser(body.createPassiveSellOfferOp.amount),
         price: body.createPassiveSellOfferOp.price,
       });
-    }
-
-    else if (body._type === operationNames.setOption || body._type === operationNames.setOptions) {
+    } else if (body._type === operationNames.setOption || body._type === operationNames.setOptions) {
       const params = {
         type: body._type,
       };
@@ -150,53 +136,41 @@ export default (operations) => {
       }
 
       newOperations.push(params);
-    }
-
-    else if (body._type === operationNames.changeTrust) {
+    } else if (body._type === operationNames.changeTrust) {
       newOperations.push({
         type: body._type,
         asset: assetParser(body.changeTrustOp.line),
-        limit: body.changeTrustOp.limit,
+        limit: amountParser(body.changeTrustOp.limit),
       });
-    }
-
-    else if (body._type === operationNames.allowTrust) {
+    } else if (body._type === operationNames.allowTrust) {
       newOperations.push({
         type: body._type,
         trustor: ed25519parser(body.allowTrustOp.trustor),
         asset: assetParser(body.allowTrustOp.asset),
         authorize: body.allowTrustOp.authorize,
       });
-    }
-
-    else if (body._type === operationNames.accountMerge) {
+    } else if (body._type === operationNames.accountMerge) {
       newOperations.push({
         type: body._type,
         destination: ed25519parser(body.destination),
       });
-    }
-
-    else if (body._type === operationNames.manageData || body._type === operationNames.manageDatum) {
+    } else if (body._type === operationNames.manageData || body._type === operationNames.manageDatum) {
       const p = {
         type: body._type,
         name: body.manageDataOp.dataName,
       };
 
       if (body.manageDataOp.dataValue) {
-        p.value = removeNull(body.manageDataOp.dataValue.toString())
+        p.value = removeNull(body.manageDataOp.dataValue.toString());
       }
 
       newOperations.push(p);
-    }
-
-    else if (body._type === operationNames.bumpSequence) {
+    } else if (body._type === operationNames.bumpSequence) {
       newOperations.push({
         type: body._type,
         bumpTo: body.bumpSequenceOp.bumpTo,
       });
-    }
-
-    else {
+    } else {
       newOperations.push({
         type: body._type,
       });
@@ -204,4 +178,4 @@ export default (operations) => {
   }
 
   return newOperations;
-}
+};
