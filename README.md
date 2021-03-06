@@ -2,7 +2,7 @@
 
 ## Introduction
 
-XDR Parser is a package that parses the Envelope XDR string made by Stellar XDR package inor a legible and clean json.
+XDR Parser is a package that parses the Envelope XDR string made by Stellar XDR package into a legible and clean JSON.
 
 ## Installation
 
